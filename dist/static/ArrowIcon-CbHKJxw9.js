@@ -1,0 +1,1 @@
+import{n as e}from"./index-BqRr6whE.js";var t=e();function n(){return(0,t.jsx)(`svg`,{viewBox:`0 0 16 16`,fill:`none`,"aria-hidden":`true`,children:(0,t.jsx)(`path`,{d:`M3 8h10M9 4l4 4-4 4`,stroke:`currentColor`,strokeWidth:`1.6`,strokeLinecap:`square`})})}export{n as t};
