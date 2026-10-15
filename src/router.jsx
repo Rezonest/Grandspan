@@ -20,19 +20,22 @@ export function Router({ initialPath, initialPage, children }) {
 
   const go = useCallback(async (url, { push = true, restoreY = null } = {}) => {
     const id = ++navId.current;
-    const page = await loadPage(pageKeyFor(url.pathname));
+    const pathname = url.pathname.startsWith('#') ? url.pathname.slice(1) : url.pathname;
+    const page = await loadPage(pageKeyFor(pathname));
     if (id !== navId.current) return; // a newer navigation started while this page loaded
     if (push) {
       history.replaceState({ ...history.state, y: window.scrollY }, '');
       history.pushState({}, '', url.href);
     }
-    setLoc(l => ({ path: url.pathname, page, hash: url.hash, restoreY, nav: l.nav + 1 }));
+    setLoc(l => ({ path: pathname, page, hash: url.hash, restoreY, nav: l.nav + 1 }));
   }, []);
 
   const navigate = useCallback(href => {
     const url = new URL(href, location.href);
     if (url.origin !== location.origin) return void location.assign(url.href);
-    if (url.pathname === location.pathname) {
+    const pathname = url.pathname.startsWith('#') ? url.pathname.slice(1) : url.pathname;
+    const currentPathname = location.hash.slice(1) || '/';
+    if (pathname === currentPathname) {
       // Same page: behave like a normal in-page anchor.
       if (url.hash) { history.pushState({}, '', url.href); scrollToHash(url.hash); }
       else window.scrollTo({ top: 0, behavior: 'instant' });
@@ -42,14 +45,22 @@ export function Router({ initialPath, initialPage, children }) {
   }, [go]);
 
   useEffect(() => {
-    let current = location.pathname;
-    const onPop = () => {
-      if (location.pathname === current) return; // hash-only change, browser handles it
-      current = location.pathname;
+    let current = location.hash.slice(1) || '/';
+    const onHashChange = () => {
+      const newPath = location.hash.slice(1) || '/';
+      if (newPath === current) return;
+      current = newPath;
       go(new URL(location.href), { push: false, restoreY: history.state?.y ?? 0 });
     };
+    const onPop = () => {
+      onHashChange();
+    };
+    window.addEventListener('hashchange', onHashChange);
     window.addEventListener('popstate', onPop);
-    return () => window.removeEventListener('popstate', onPop);
+    return () => {
+      window.removeEventListener('hashchange', onHashChange);
+      window.removeEventListener('popstate', onPop);
+    };
   }, [go]);
 
   // After a client-side navigation renders: update <head>, set scroll and move focus.

@@ -11,10 +11,11 @@ async function start() {
   // Prerendered pages record which page they contain, so hydration always
   // matches the server HTML (e.g. 404.html served for an unknown URL).
   const prerendered = root.dataset.page;
-  const page = await loadPage(prerendered || pageKeyFor(location.pathname));
+  const initialPath = location.hash.slice(1) || '/';
+  const page = await loadPage(prerendered || pageKeyFor(initialPath));
   const app = (
     <StrictMode>
-      <Router initialPath={location.pathname} initialPage={page}>
+      <Router initialPath={initialPath} initialPage={page}>
         <App />
       </Router>
     </StrictMode>
