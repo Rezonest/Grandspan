@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      var pathname = window.location.pathname;
+      var basePath = '/Grandspan';
+
+      // Remove trailing slash if present
+      if (pathname !== basePath + '/' && pathname.endsWith('/')) {
+        pathname = pathname.slice(0, -1);
+      }
+
+      // If the pathname is not the base path, redirect to index with the path as a query param
+      if (pathname !== basePath && pathname !== basePath + '/') {
+        var redirect = basePath + '/?redirect=' + encodeURIComponent(pathname.slice(basePath.length));
+        window.location.replace(redirect);
+      }
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
