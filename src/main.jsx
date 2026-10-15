@@ -6,12 +6,16 @@ import { applyMeta } from './head.js';
 import { loadPage, pageKeyFor } from './routes.js';
 import './styles.css';
 
+const ROUTER_MODE = process.env.ROUTER_MODE || 'hash';
+
 async function start() {
   const root = document.getElementById('root');
   // Prerendered pages record which page they contain, so hydration always
   // matches the server HTML (e.g. 404.html served for an unknown URL).
   const prerendered = root.dataset.page;
-  const initialPath = location.hash.slice(1) || '/';
+  const initialPath = ROUTER_MODE === 'hash'
+    ? (location.hash.slice(1) || '/')
+    : location.pathname;
   const page = await loadPage(prerendered || pageKeyFor(initialPath));
   const app = (
     <StrictMode>

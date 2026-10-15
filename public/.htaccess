@@ -2,38 +2,51 @@
   RewriteEngine On
   RewriteBase /
 
-  # Serve clean URLs by mapping them to .html files
+  # Remove .html extension
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^([a-z0-9_-]*)/?$ $1.html [QSA,L]
-  RewriteRule ^([a-z0-9_/-]*)/?$ $1.html [QSA,L]
+  RewriteRule ^([^\.]+)$ $1.html [NC,L]
 
-  # Redirect .html URLs to clean versions (301 redirect for SEO)
-  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.html
-  RewriteRule ^(.*)\.html$ /$1 [R=301,L]
-
-  # Prevent redirecting .html files accessed directly if they exist
-  RewriteCond %{REQUEST_URI} !\.html$ [NC]
+  # Redirect /file.html to /file
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ $1.html [L,QSA]
+  RewriteCond %{REQUEST_URI} ^(.+)\.html$ [NC]
+  RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+  # SPA fallback: route unknown URLs to index.html for client-side routing
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
 </IfModule>
 
-# Serve Precompressed assets if available
+# Caching headers
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Cache static assets for 30 days
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/gif "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType font/woff "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 30 days"
+  
+  # Don't cache HTML
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Gzip compression
 <IfModule mod_deflate.c>
-  AddEncoding gzip .gz
-  AddType application/gzip .gz
-  RewriteCond %{HTTP:Accept-Encoding} gzip
-  RewriteCond %{REQUEST_FILENAME}.gz -f
-  RewriteRule ^(.+)$ $1.gz [QSA]
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
-
-# Cache busting for hashed assets
-<FilesMatch "\.(js|css|woff2?)$">
-  Header set Cache-Control "public, max-age=31536000, immutable"
-</FilesMatch>
-
-# Don't cache HTML files
-<FilesMatch "\.html$">
-  Header set Cache-Control "public, max-age=3600, must-revalidate"
-</FilesMatch>
