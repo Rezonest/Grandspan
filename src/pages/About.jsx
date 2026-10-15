@@ -21,7 +21,7 @@ export const meta = {
           "@type": "ListItem",
           "position": 2,
           "name": "About Grandspan",
-          "item": "https://grandspan.co.uk/about.html"
+          "item": "https://grandspan.co.uk/about"
         }
       ]
     }

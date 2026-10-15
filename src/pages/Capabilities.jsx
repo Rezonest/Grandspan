@@ -21,7 +21,7 @@ export const meta = {
           "@type": "ListItem",
           "position": 2,
           "name": "Telecom, Water & Industrial Engineering Capabilities",
-          "item": "https://grandspan.co.uk/capabilities.html"
+          "item": "https://grandspan.co.uk/capabilities"
         }
       ]
     }

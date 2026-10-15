@@ -21,7 +21,7 @@ export const meta = {
           "@type": "ListItem",
           "position": 2,
           "name": "Manufacturing & Equipment",
-          "item": "https://grandspan.co.uk/manufacturing.html"
+          "item": "https://grandspan.co.uk/manufacturing"
         }
       ]
     }
@@ -123,7 +123,7 @@ export default function Manufacturing() {
       <div className="step"><span className="n">iv</span><h3>Site services &amp; trading</h3><p>Skilled site work, plus sourcing of engineering products and raw materials.</p></div>
       </div>
       <p className="fine" style={{marginTop: "2rem"}}>Manufacturing, certification and capacity sit with group companies of Tenaro Global EPC and the Dehu Group. Grandspan coordinates scope, documentation and the client interface for UK and international enquiries.</p>
-      <p className="fine">For supply to Great Britain, pressure equipment is placed on the market under PE(S)R 2016 and structural steelwork under BS EN 1090, with UKCA or CE marking. <Link to="/how-we-work.html#uk-compliance" style={{color: "var(--navy-700)"}}>See UK compliance</Link>.</p>
+      <p className="fine">For supply to Great Britain, pressure equipment is placed on the market under PE(S)R 2016 and structural steelwork under BS EN 1090, with UKCA or CE marking. <Link to="/how-we-work#uk-compliance" style={{color: "var(--navy-700)"}}>See UK compliance</Link>.</p>
       </div></section>
       <section className="cta tight"><div className="wrap">
       <h2>Have a scope in mind? <span className="serif">Send us the brief.</span></h2>

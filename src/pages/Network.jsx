@@ -22,7 +22,7 @@ export const meta = {
           "@type": "ListItem",
           "position": 2,
           "name": "Global Network",
-          "item": "https://grandspan.co.uk/network.html"
+          "item": "https://grandspan.co.uk/network"
         }
       ]
     }

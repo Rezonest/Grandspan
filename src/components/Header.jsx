@@ -3,14 +3,14 @@ import { Link, useRouter } from '../router.jsx';
 
 const NAV = [
   ['/', 'Home'],
-  ['/about.html', 'About Us'],
-  ['/capabilities.html', 'Capabilities'],
-  ['/how-we-work.html', 'How We Work'],
-  ['/manufacturing.html', 'Manufacturing'],
-  ['/network.html', 'Global Network'],
+  ['/about', 'About Us'],
+  ['/capabilities', 'Capabilities'],
+  ['/how-we-work', 'How We Work'],
+  ['/manufacturing', 'Manufacturing'],
+  ['/network', 'Global Network'],
 ];
 
-const isCurrent = (path, to) => path === to || (to === '/' && path === '/index.html');
+const isCurrent = (path, to) => path === to || (to === '/' && path === '/');
 
 export default function Header() {
   const { path } = useRouter();

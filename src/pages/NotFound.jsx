@@ -2,7 +2,7 @@ import ArrowIcon from '../components/ArrowIcon.jsx';
 import { Link } from '../router.jsx';
 
 export const meta = {
-  "path": "/404.html",
+  "path": "/404",
   "title": "Page Not Found | Grandspan",
   "description": "The page you were looking for could not be found.",
   "robots": "noindex,follow",
@@ -21,7 +21,7 @@ export const meta = {
           "@type": "ListItem",
           "position": 2,
           "name": "Page Not Found",
-          "item": "https://grandspan.co.uk/404.html"
+          "item": "https://grandspan.co.uk/404"
         }
       ]
     }

@@ -20,7 +20,7 @@ export const meta = {
           "@type": "ListItem",
           "position": 2,
           "name": "Cookie Policy",
-          "item": "https://grandspan.co.uk/cookie-policy.html"
+          "item": "https://grandspan.co.uk/cookie-policy"
         }
       ]
     }

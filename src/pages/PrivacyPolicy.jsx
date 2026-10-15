@@ -20,7 +20,7 @@ export const meta = {
           "@type": "ListItem",
           "position": 2,
           "name": "Privacy Policy",
-          "item": "https://grandspan.co.uk/privacy-policy.html"
+          "item": "https://grandspan.co.uk/privacy-policy"
         }
       ]
     }

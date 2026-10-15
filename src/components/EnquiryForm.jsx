@@ -9,13 +9,13 @@ export default function EnquiryForm() {
   const form = useRef(null);
   // Hidden fields are state-driven: re-renders during submit must not reset them.
   const [subject, setSubject] = useState('New project enquiry: grandspan website');
-  const [next, setNext] = useState('thank-you.html');
+  const [next, setNext] = useState('/thank-you');
   const [status, setStatus] = useState({ text: DEFAULT_NOTE, error: false });
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
     // FormSubmit needs an absolute redirect URL.
-    setNext(new URL('/thank-you.html', location.href).href);
+    setNext(new URL('/thank-you', location.href).href);
     // Re-enable the button if the visitor returns via the back button.
     const onShow = () => setSending(false);
     window.addEventListener('pageshow', onShow);
