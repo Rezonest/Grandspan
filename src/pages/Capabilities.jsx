@@ -2,7 +2,7 @@ import ArrowIcon from '../components/ArrowIcon.jsx';
 import { Link } from '../router.jsx';
 
 export const meta = {
-  "path": "/capabilities.html",
+  "path": "/capabilities",
   "title": "Telecom, Water & Industrial Engineering Capabilities | Grandspan",
   "description": "Telecom and water EPC, plus structural, BIM, energy, marine and process engineering through the Tenaro and Dehu ecosystem.",
   "robots": "index,follow,max-image-preview:large",
@@ -133,7 +133,7 @@ export default function Capabilities() {
       </div></section>
       <section className="cta tight"><div className="wrap">
       <h2>Have a scope in mind? <span className="serif">Send us the brief.</span></h2>
-      <div className="actions"><Link className="btn btn-light" to="/contact.html">Raise an enquiry <ArrowIcon /></Link><a className="btn btn-ghost" href="mailto:info@grandspan.co.uk" style={{borderColor: "rgba(255,255,255,.35)", color: "#fff"}}>info@grandspan.co.uk</a></div>
+      <div className="actions"><Link className="btn btn-light" to="/contact">Raise an enquiry <ArrowIcon /></Link><a className="btn btn-ghost" href="mailto:info@grandspan.co.uk" style={{borderColor: "rgba(255,255,255,.35)", color: "#fff"}}>info@grandspan.co.uk</a></div>
       </div></section>
     </>
   );

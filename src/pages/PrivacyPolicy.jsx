@@ -1,7 +1,7 @@
 import { Link } from '../router.jsx';
 
 export const meta = {
-  "path": "/privacy-policy.html",
+  "path": "/privacy-policy",
   "title": "Privacy Policy | Grandspan",
   "description": "How Grandspan Engineering & Projects Limited handles personal information from website visitors and project enquiries.",
   "robots": "index,follow,max-image-preview:large",
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
       <p>Grandspan Engineering &amp; Projects Limited is responsible for the personal information described in this policy. Our company number is 17483898 and our registered office is 20 Wenlock Road, London N1 7GU, United Kingdom.</p>
       <p>For privacy questions, requests or complaints, email <a href="mailto:info@grandspan.co.uk">info@grandspan.co.uk</a>.</p>
       <h2 id="receive">Information we receive</h2>
-      <p>If you use the enquiry form on our <Link to="/contact.html">Contact page</Link>, we receive the details you enter. That means your name and email address, plus any company, phone number, project location, area of support, programme and project description you provide. We also record that you agreed to this policy. If you email us directly, we receive your email address, any contact details you include and the content of your message.</p>
+      <p>If you use the enquiry form on our <Link to="/contact">Contact page</Link>, we receive the details you enter. That means your name and email address, plus any company, phone number, project location, area of support, programme and project description you provide. We also record that you agreed to this policy. If you email us directly, we receive your email address, any contact details you include and the content of your message.</p>
       <p>If you introduce another person as part of an enquiry, we may receive their professional contact details from you.</p>
       <p>When you visit the site, our hosting provider and the services that deliver the site's fonts and map may process technical information to deliver and protect it. This can include your IP address, browser and device details, the pages requested and the time of each request.</p>
       <h2 id="use">How we use it</h2>
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
       <p>We keep enquiry correspondence while we need it to respond and follow up. After that, we keep it for a reasonable period that depends on the nature of the enquiry, any resulting project, our legal obligations and possible disputes. Contract and statutory records may need to be kept longer. Technical logs are kept according to each provider's operational and security needs. We review the information we hold and delete or anonymise it when it is no longer needed.</p>
       <h2 id="rights">Your rights and complaints</h2>
       <p>Depending on the circumstances, you can ask us to access, correct, erase or restrict the use of your personal data, or object to its use. Data portability may also apply in some cases. To make a request or raise a concern, email <a href="mailto:info@grandspan.co.uk">info@grandspan.co.uk</a>.</p>
-      <p>You can also <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">complain to the Information Commissioner's Office</a>. For information about this site's storage technologies, see our <Link to="/cookie-policy.html">Cookie Policy</Link>. We will update this policy if the site's features or data practices change.</p>
+      <p>You can also <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">complain to the Information Commissioner's Office</a>. For information about this site's storage technologies, see our <Link to="/cookie-policy">Cookie Policy</Link>. We will update this policy if the site's features or data practices change.</p>
       </article>
       </div></section>
     </>

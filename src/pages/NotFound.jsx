@@ -34,7 +34,7 @@ export default function NotFound() {
       <section className="page-hero" style={{minHeight: "62vh", display: "flex", alignItems: "center"}}><div className="wrap">
       <p className="eyebrow light">Page not found</p><h1>This page has moved <span className="serif">or no longer exists.</span></h1>
       <p className="lede">The link may be out of date. Use the menu, or start from one of the pages below.</p>
-      <div className="actions" style={{marginTop: "2rem"}}><Link className="btn btn-light" to="/">Back to home <ArrowIcon /></Link><Link className="btn btn-ghost" to="/contact.html">Contact us</Link></div>
+      <div className="actions" style={{marginTop: "2rem"}}><Link className="btn btn-light" to="/">Back to home <ArrowIcon /></Link><Link className="btn btn-ghost" to="/contact">Contact us</Link></div>
       </div></section>
     </>
   );

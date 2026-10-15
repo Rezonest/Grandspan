@@ -1,0 +1,39 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve clean URLs by mapping them to .html files
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^([a-z0-9_-]*)/?$ $1.html [QSA,L]
+  RewriteRule ^([a-z0-9_/-]*)/?$ $1.html [QSA,L]
+
+  # Redirect .html URLs to clean versions (301 redirect for SEO)
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.html
+  RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+  # Prevent redirecting .html files accessed directly if they exist
+  RewriteCond %{REQUEST_URI} !\.html$ [NC]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ $1.html [L,QSA]
+</IfModule>
+
+# Serve Precompressed assets if available
+<IfModule mod_deflate.c>
+  AddEncoding gzip .gz
+  AddType application/gzip .gz
+  RewriteCond %{HTTP:Accept-Encoding} gzip
+  RewriteCond %{REQUEST_FILENAME}.gz -f
+  RewriteRule ^(.+)$ $1.gz [QSA]
+</IfModule>
+
+# Cache busting for hashed assets
+<FilesMatch "\.(js|css|woff2?)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# Don't cache HTML files
+<FilesMatch "\.html$">
+  Header set Cache-Control "public, max-age=3600, must-revalidate"
+</FilesMatch>

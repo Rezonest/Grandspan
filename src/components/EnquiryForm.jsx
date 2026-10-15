@@ -56,7 +56,7 @@ export default function EnquiryForm() {
         <option>Telecom infrastructure</option><option>Water &amp; wastewater</option><option>Engineering design &amp; detailing</option><option>Boilers, pressure parts &amp; spares</option><option>Fabrication &amp; equipment supply</option><option>Integrated EPC</option><option>Other</option></select></div>
       <div className="full"><label htmlFor="programme">Target programme</label><input id="programme" name="Target programme" placeholder="e.g. Start Q2 2027, 6 months" /></div>
       <div className="full"><label htmlFor="msg">Scope and key technical requirements <span aria-hidden="true">*</span></label><textarea id="msg" name="Scope and requirements" required minLength="20"></textarea></div>
-      <div className="full consent"><input type="checkbox" id="consent" name="Privacy consent" value="Agreed" required /><label htmlFor="consent">I agree that Grandspan may use these details to respond to my enquiry, as described in the <Link to="/privacy-policy.html">Privacy Policy</Link>. <span aria-hidden="true">*</span></label></div>
+      <div className="full consent"><input type="checkbox" id="consent" name="Privacy consent" value="Agreed" required /><label htmlFor="consent">I agree that Grandspan may use these details to respond to my enquiry, as described in the <Link to="/privacy-policy">Privacy Policy</Link>. <span aria-hidden="true">*</span></label></div>
       <div className="full actions form-actions"><p className={status.error ? 'form-note err' : 'form-note'} id="f-status" role="status">{status.text}</p><button className="btn btn-primary" type="submit" id="f-submit" disabled={sending}>Send enquiry <ArrowIcon /></button></div>
     </form>
   );

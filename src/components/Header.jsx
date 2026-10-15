@@ -40,7 +40,7 @@ export default function Header() {
         {NAV.map(([to, label]) => (
           <Link key={to} to={to} aria-current={isCurrent(path, to) ? 'page' : undefined}>{label}</Link>
         ))}
-        <Link className="btn-nav" to="/contact.html" aria-current={path === '/contact.html' ? 'page' : undefined}>Contact</Link>
+        <Link className="btn-nav" to="/contact" aria-current={isCurrent(path, '/contact') ? 'page' : undefined}>Contact</Link>
       </nav>
     </div></header>
   );

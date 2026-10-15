@@ -1,7 +1,7 @@
 import { Link } from '../router.jsx';
 
 export const meta = {
-  "path": "/cookie-policy.html",
+  "path": "/cookie-policy",
   "title": "Cookie Policy | Grandspan",
   "description": "How the Grandspan Engineering & Projects website uses cookies and similar technologies.",
   "robots": "index,follow,max-image-preview:large",
@@ -44,7 +44,7 @@ export default function CookiePolicy() {
       <h2 id="choices">Your choices</h2>
       <p>You can view, block or delete cookies for this website in your browser settings. Blocking essential site data may affect how a page loads or works. The website sets no optional cookies, so there are no cookie preferences to save here.</p>
       <h2 id="changes">Changes and contact</h2>
-      <p>If we add analytics or other non-essential cookies, we will list their names, purposes and duration on this page. Where consent is required, we will ask before setting them. For questions, email <a href="mailto:info@grandspan.co.uk">info@grandspan.co.uk</a>. For more about how we use personal information, read our <Link to="/privacy-policy.html">Privacy Policy</Link>.</p>
+      <p>If we add analytics or other non-essential cookies, we will list their names, purposes and duration on this page. Where consent is required, we will ask before setting them. For questions, email <a href="mailto:info@grandspan.co.uk">info@grandspan.co.uk</a>. For more about how we use personal information, read our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
       </article>
       </div></section>
     </>

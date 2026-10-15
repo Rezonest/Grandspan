@@ -1,7 +1,7 @@
 import EnquiryForm from '../components/EnquiryForm.jsx';
 
 export const meta = {
-  "path": "/contact.html",
+  "path": "/contact",
   "title": "Contact | Grandspan",
   "description": "Contact Grandspan Engineering & Projects Limited, 20 Wenlock Road, London N1 7GU.",
   "robots": "index,follow,max-image-preview:large",
