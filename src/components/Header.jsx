@@ -10,7 +10,7 @@ const NAV = [
   ['/network', 'Global Network'],
 ];
 
-const isCurrent = (path, to) => path === to || (to === '/' && path === '/');
+const isCurrent = (path, to) => path === to;
 
 export default function Header() {
   const { path } = useRouter();
