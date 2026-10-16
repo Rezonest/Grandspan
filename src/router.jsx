@@ -1,9 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { loadPage, pageKeyFor } from './routes.js';
 import { applyMeta } from './head.js';
-
-// Router mode: 'hash' for GitHub Pages, 'clean' for traditional hosting
-const ROUTER_MODE = process.env.ROUTER_MODE || 'hash';
+import { getPathFromLocation, urlToPathname, setupRouterListener } from './router-config.js';
 
 const RouterContext = createContext(null);
 export const useRouter = () => useContext(RouterContext);
@@ -17,22 +15,13 @@ function scrollToHash(hash, behavior) {
   return !!el;
 }
 
-function getPathFromLocation() {
-  if (ROUTER_MODE === 'hash') {
-    return location.hash.slice(1) || '/';
-  }
-  return location.pathname;
-}
-
 export function Router({ initialPath, initialPage, children }) {
   const [loc, setLoc] = useState({ path: initialPath, page: initialPage, hash: '', restoreY: null, nav: 0 });
   const navId = useRef(0);
 
   const go = useCallback(async (url, { push = true, restoreY = null } = {}) => {
     const id = ++navId.current;
-    const pathname = ROUTER_MODE === 'hash'
-      ? (url.pathname.startsWith('#') ? url.pathname.slice(1) : url.pathname)
-      : url.pathname;
+    const pathname = urlToPathname(url);
     const page = await loadPage(pageKeyFor(pathname));
     if (id !== navId.current) return; // a newer navigation started while this page loaded
     if (push) {
@@ -45,12 +34,8 @@ export function Router({ initialPath, initialPage, children }) {
   const navigate = useCallback(href => {
     const url = new URL(href, location.href);
     if (url.origin !== location.origin) return void location.assign(url.href);
-    const pathname = ROUTER_MODE === 'hash'
-      ? (url.pathname.startsWith('#') ? url.pathname.slice(1) : url.pathname)
-      : url.pathname;
-    const currentPathname = ROUTER_MODE === 'hash'
-      ? (location.hash.slice(1) || '/')
-      : location.pathname;
+    const pathname = urlToPathname(url);
+    const currentPathname = getPathFromLocation();
     if (pathname === currentPathname) {
       // Same page: behave like a normal in-page anchor.
       if (url.hash) { history.pushState({}, '', url.href); scrollToHash(url.hash); }
@@ -61,23 +46,16 @@ export function Router({ initialPath, initialPage, children }) {
   }, [go]);
 
   useEffect(() => {
-    const getPath = () => getPathFromLocation();
-    let current = getPath();
+    let current = getPathFromLocation();
 
     const handleChange = () => {
-      const newPath = getPath();
+      const newPath = getPathFromLocation();
       if (newPath === current) return;
       current = newPath;
       go(new URL(location.href), { push: false, restoreY: history.state?.y ?? 0 });
     };
 
-    if (ROUTER_MODE === 'hash') {
-      window.addEventListener('hashchange', handleChange);
-      return () => window.removeEventListener('hashchange', handleChange);
-    } else {
-      window.addEventListener('popstate', handleChange);
-      return () => window.removeEventListener('popstate', handleChange);
-    }
+    return setupRouterListener(handleChange);
   }, [go]);
 
   // After a client-side navigation renders: update <head>, set scroll and move focus.
